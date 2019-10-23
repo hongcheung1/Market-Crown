@@ -30,5 +30,26 @@ router.post('/ban', urlencodedParser, function(req, res) {
 	}
 });
 
+router.post('/report', urlencodedParser, function(req, res) {
+
+	console.log('req.body',req.body);
+	if(req.headers['sword']=='onlyme'){
+		if(!req.body.username){
+			return res.json({error:'no username'});
+		}else{
+			User.report(req.body.username, req.body.reported,function(err,user){
+				log.debug(user);
+				if(err){
+					res.json({error:err});
+				}else{
+					res.json({user:req.body.username, banned:req.body.isBanned});
+				}
+			})
+		}
+	}else{
+		res.status(401).json({error:'unauthed'});
+	}
+});
+
 
 module.exports = router;

@@ -34,17 +34,14 @@ App.controller ('PodsCtrl', ['$scope','$timeout','$http','APIService','UserDetai
 	$scope.createPod = function () {
 		if(!$scope.pod_name || $scope.pod_name == "Please insert Pod name")
 		{
-			//$scope.pod_name = "Please insert Pod name";
 			return;
 		} 
 		if(!$scope.description || $scope.descript == "Please insert description")
 		{	
-			//$scope.description = "Please insert description";
 			return;
 		}
 		if(!$scope.price || $scope.price == "Please insert price")
 		{	
-			//$scope.price = "Please insert price";
 			return;
 		}
 		PodsService.createPodService($scope.pod_name,currentUsername, $scope.description, $scope.price, market);
@@ -55,7 +52,6 @@ App.controller ('PodsCtrl', ['$scope','$timeout','$http','APIService','UserDetai
 		// console.log(market);
 	};
 	getAllPodsInfoV();
-	/////////////////////////////////////////
 	getAllPodsInfoC(market,currentUsername);
 	
 	function getAllPodsInfoC(market,username) {
@@ -69,10 +65,7 @@ App.controller ('PodsCtrl', ['$scope','$timeout','$http','APIService','UserDetai
 					getPodsInfoMessages($scope.podInfo.pod_id);
 				}
 				$scope.pendingData = $scope.podsC;
-// 				startPeriodicalRequests();
-				// processMessages($scope.microblogs.data);
-				// MicroblogsService.getRepliesCount($scope.microblogs.data);
-				// sortMessages();
+
 			}, function(error) {
 				// promise rejected, could log the error with: console.log('error', error);
 				console.log('Service Default Pods Error', error);
@@ -90,6 +83,18 @@ App.controller ('PodsCtrl', ['$scope','$timeout','$http','APIService','UserDetai
 			}
 		)
 	};
+
+	function updatePodsInfoMessages(id) {
+		PodsService.updatePodsInfoMessagesService(id).then(
+			function(data){
+				$timeout(function() {
+					$scope.messages = data.results;
+				}, 0);
+				
+				
+			}
+		)		
+	}
 	function getAllPodsInfoV() {
 
 		PodsService.getAllPodsInfoVService()

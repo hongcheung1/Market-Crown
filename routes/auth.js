@@ -8,18 +8,16 @@ var _						= require('lodash');
 
 const User 					= require('../db/user.model.js');
 const CONFIG				= require('../config.js');
-//
+
 var passport 				= require('passport');
 var bodyParser 				= require('body-parser');
 
 
 var FacebookStrategy 		= require('passport-facebook').Strategy;
 var TwitterStrategy 		= require('passport-twitter');
-//var GooglePlusStrategy 	= require('passport-google-plus');
 var GoogleStrategy 			= require('passport-google-oauth20').Strategy;
 
 var urlencodedParser 		= bodyParser.urlencoded({ extended: false });
-//bodyParser.json({ type: 'application/json'});//
 passport.serializeUser(function(user, done) {
 	done(null, user._id);
 });
