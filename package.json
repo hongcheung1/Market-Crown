@@ -20,7 +20,7 @@
     "ioredis": "^1.15.1",
     "lodash": "^4.5.1",
     "log4js": "^0.6.32",
-    "mongoose": "^4.4.5",
+    "mongoose": "^5.7.8",
     "mustache": "^2.2.1",
     "mustache-express": "^1.2.2",
     "passport": "^0.3.2",
